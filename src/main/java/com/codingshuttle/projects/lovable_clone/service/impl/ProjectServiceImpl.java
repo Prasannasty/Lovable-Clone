@@ -13,8 +13,11 @@ import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,14 +54,34 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ProjectResponse getUserProjectById(Long id, Long userId) {
-
-        return null;
+        Project project= projectRepository
+                .findByIdAndOwnerIdAndDeletedAtIsNull(id,userId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Project not found or access denied"
+                ));
+        return projectMapper.toProjectResponse(project);
     }
 
 
     @Override
-    public ProjectResponse updateProject(Long id, Long userId, ProjectRequest request) {
-        return null;
+    public ProjectResponse updateProject(
+            Long projectId,
+            Long userId,
+            ProjectRequest request
+    ) {
+        Project project = projectRepository
+                .findByIdAndOwnerIdAndDeletedAtIsNull(projectId, userId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Project not found or access denied"
+                ));
+        if (request.name() != null) {
+            project.setName(request.name());
+        }
+        project.setUpdatedAt(Instant.now());
+        Project updatedProject = projectRepository.save(project);
+        return projectMapper.toProjectResponse(updatedProject);
     }
 
     @Override
