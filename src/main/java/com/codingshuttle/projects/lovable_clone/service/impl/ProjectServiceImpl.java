@@ -1,0 +1,37 @@
+package com.codingshuttle.projects.lovable_clone.service.impl;
+
+import com.codingshuttle.projects.lovable_clone.dto.project.ProjectRequest;
+import com.codingshuttle.projects.lovable_clone.dto.project.ProjectResponse;
+import com.codingshuttle.projects.lovable_clone.dto.project.ProjectSummaryResponse;
+import com.codingshuttle.projects.lovable_clone.service.ProjectService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ProjectServiceImpl implements ProjectService {
+    @Override
+    public List<ProjectSummaryResponse> getUserProjects(Long userId) {
+        return null;
+    }
+
+    @Override
+    public ProjectResponse getUserProjectById(Long id, Long userId) {
+        return null;
+    }
+
+    @Override
+    public ProjectResponse createProject(ProjectRequest request, Long userId) {
+        return null;
+    }
+
+    @Override
+    public ProjectResponse updateProject(Long id, Long userId, ProjectRequest request) {
+        return null;
+    }
+
+    @Override
+    public void softDelete(Long id, Long userId) {
+
+    }
+}
