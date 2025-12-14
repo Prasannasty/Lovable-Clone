@@ -1,4 +1,4 @@
-package com.codingshuttle.projects.lovable_clone.dto;
+package com.codingshuttle.projects.lovable_clone.dto.auth;
 
 public record LoginRequest(
         String email,

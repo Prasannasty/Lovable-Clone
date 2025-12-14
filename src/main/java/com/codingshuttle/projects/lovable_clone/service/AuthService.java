@@ -1,8 +1,8 @@
 package com.codingshuttle.projects.lovable_clone.service;
 
-import com.codingshuttle.projects.lovable_clone.dto.AuthResponse;
-import com.codingshuttle.projects.lovable_clone.dto.LoginRequest;
-import com.codingshuttle.projects.lovable_clone.dto.SignUpRequest;
+import com.codingshuttle.projects.lovable_clone.dto.auth.AuthResponse;
+import com.codingshuttle.projects.lovable_clone.dto.auth.LoginRequest;
+import com.codingshuttle.projects.lovable_clone.dto.auth.SignUpRequest;
 
 public interface AuthService {
     AuthResponse signup(SignUpRequest request);
